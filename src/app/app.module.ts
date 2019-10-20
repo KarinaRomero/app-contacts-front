@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { from } from 'rxjs';
+import { ContactsComponent } from './contacts/contacts.component';
 
 // --------- Oauth ---------------------------------------------
 //import { httpInterceptorProviders } from './auth/auth-interceptor';
@@ -18,7 +19,8 @@ import { from } from 'rxjs';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
