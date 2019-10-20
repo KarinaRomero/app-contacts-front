@@ -5,6 +5,7 @@
     <ul class="nav navbar-nav" routerLinkActive="active">
       <li *ngIf="authority === 'user'" class="nav-item">
         <a class="nav-link">Welcome {{username}}</a>
+        <button (click)="logout()">Logout</button>
       </li>
     </ul>
   </div>

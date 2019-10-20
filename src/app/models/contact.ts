@@ -1,4 +1,5 @@
 export class Contact {
+    idContact:number;
     name: string;
     age: number;
     nickName: string;
