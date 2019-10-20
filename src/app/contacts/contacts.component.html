@@ -1,7 +1,7 @@
 <p>contacts works!</p>
 <div *ngIf="login.token; else loggedOut">
-    <strong>username</strong>{login.username}
-    <strong>token</strong>{login.token}
-    <strong>authorities</strong>{login.authorities}
+    <strong>username</strong>{{login.username}}
+    <strong>token</strong>{{login.token}}
+    <strong>authorities</strong>{{login.authorities}}
     <button class="" (click)="logout()"></button>
 </div>

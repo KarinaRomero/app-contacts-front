@@ -1,5 +1,14 @@
-
-<h1>Header</h1>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    </div>
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li *ngIf="authority === 'user'" class="nav-item">
+        <a class="nav-link">Welcome {{username}}</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 <div class="container">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

@@ -26,4 +26,5 @@ export class AuthService {
   register(register: Register): Observable<string> {
     return this.httpClient.post<string>(this.registerURL, register, httpOptions);
   }
+
 }
