@@ -1,8 +1,25 @@
-<p>contacts works!</p>
-<div >
-    <ul>
-        <li *ngFor="let contact of contacts;">
-          {{contact.nickName}}
-        </li>
-      </ul>
+<div class="container">
+  <h2>Your contact list</h2>
+  <table class="table mx-auto">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Nickname</th>
+        <th scope="col">Phone</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts;">
+        <td>{{contact.name}}</td>
+        <td>{{contact.age}}</td>
+        <td>{{contact.nickName}}</td>
+        <td>{{contact.phoneNumber}}</td>
+        <td><button type="button" class="btn btn-dark">Edit</button></td>
+        <td><button type="button" class="btn btn-danger">X</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

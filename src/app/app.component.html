@@ -1,15 +1,11 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    </div>
-    <ul class="nav navbar-nav" routerLinkActive="active">
-      <li *ngIf="authority === 'user'" class="nav-item">
-        <a class="nav-link">Welcome {{username}}</a>
-        <button (click)="logout()">Logout</button>
-      </li>
-    </ul>
-  </div>
-</nav>
-<div class="container">
+<nav class="nav nav-pills flex-column flex-sm-row justify-content-end bg-dark text-white">
+    <a class="flex-sm-fill text-sm-center nav-link "> </a>
+    <a class="flex-sm-fill text-sm-center nav-link" ></a>
+    <a class="flex-sm-fill text-sm-center nav-link "> </a>
+    <a class="flex-sm-fill text-sm-center nav-link" ></a>
+    <a class="flex-sm-fill text-sm-center nav-link" ><h4>Welcome {{username}}</h4></a>
+    <a class="flex-sm-fill text-sm-center nav-link " href="#" tabindex="-1" aria-disabled="true"><button class="btn btn-secondary" (click)="logout()">Logout</button></a>
+  </nav>
+<div class="container-fluid">
   <router-outlet></router-outlet>
 </div>

@@ -22,6 +22,9 @@ export class ContactsComponent implements OnInit {
         this.contacts.push(contact);
       });
     }, error => {console.log(error.error.messsage)});
+    /*for(let i = 0; i<15;i++) {
+      this.contacts.push(new Contact("ho",22,"oksa","22222222"));
+    }*/
   }
 
 
