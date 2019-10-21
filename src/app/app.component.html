@@ -4,7 +4,7 @@
     <a class="flex-sm-fill text-sm-center nav-link "> </a>
     <a class="flex-sm-fill text-sm-center nav-link" ></a>
     <a class="flex-sm-fill text-sm-center nav-link" ><h4>Welcome {{username}}</h4></a>
-    <a class="flex-sm-fill text-sm-center nav-link " href="#" tabindex="-1" aria-disabled="true"><button class="btn btn-secondary" (click)="logout()">Logout</button></a>
+    <a *ngIf="authority == 'user'" class="flex-sm-fill text-sm-center nav-link " href="#" tabindex="-1" aria-disabled="true"><button class="btn btn-secondary" (click)="logout()">Logout</button></a>
   </nav>
 <div class="container-fluid">
   <router-outlet></router-outlet>

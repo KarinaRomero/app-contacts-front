@@ -1,0 +1,11 @@
+.card {
+  border: none;
+}
+.card-img {
+  -webkit-filter: opacity(40%);
+  filter: opacity(40%);
+}
+.buttons {
+  width: 40%;
+  align-content: center;
+}

@@ -1,0 +1,13 @@
+.container-fluid {
+  padding: 0 20% 0 20%;
+}
+form {
+  padding: 15%;
+  border-radius: 5px;
+}
+.buttons {
+  margin-top: 5%;
+  width: 40%;
+  align-content: center;
+}
+
