@@ -5,3 +5,8 @@
 h2 {
   margin: 5% 0 5% 0;
 }
+.aling-elements {
+  text-align: right;
+  padding-right: 10%;
+  margin: 5%;
+}

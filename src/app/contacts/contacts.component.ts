@@ -3,6 +3,8 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { Contact } from '../models/contact';
 import { ContactService } from '../services/contact.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
@@ -11,22 +13,114 @@ import { ContactService } from '../services/contact.service';
 export class ContactsComponent implements OnInit {
 
   contacts: Contact[] = [];
+  action = "";
+  currentContact: Contact = new Contact("", 0, "", "");
 
-  constructor(private contactService:ContactService) { }
-
-  ngOnInit() {
-    this.contactService.getContacts().subscribe(data =>{
-      console.log(data);
-      data.every(contact => {
-        console.log(contact.nickName);
-        this.contacts.push(contact);
-      });
-    }, error => {console.log(error.error.messsage)});
-    /*for(let i = 0; i<15;i++) {
-      this.contacts.push(new Contact("ho",22,"oksa","22222222"));
-    }*/
+  private isAsc = false;
+  iconURL = "fas fa-arrows-alt-v";
+  indicador = {
+    name:"",
+    age:"",
+    phone:"",
   }
 
+  constructor(private contactService: ContactService) { }
 
+  ngOnInit() {
+    this.contactService.getContacts().subscribe(data => {
+      this.contacts = data;
+      this.sortTableBy("name");
+    }, error => { console.log(error.error.messsage) });
+  }
 
+  create() {
+    this.action = "Create"
+  }
+
+  update(id: number) {
+    this.action = "Update"
+    this.currentContact = this.contacts.find(function (element) {
+      return element.idContact = id;
+    });
+    console.log("to update " + this.currentContact.idContact);
+  }
+  onSubmit() {
+    if (this.action == "Update") {
+      this.contactService.update(this.currentContact.idContact, this.currentContact).subscribe(data => {
+        console.log("UPDATE: ", data);
+      });
+    }
+    if (this.action == "Create") {
+      this.contactService.create(this.currentContact).subscribe(data => {
+        console.log("CREATE: ", data);
+        this.contacts.push(data);
+      });
+    }
+    this.currentContact = new Contact("", 0, "", "");
+    this.action = "";
+    $('#exampleModal').modal('hide');
+  }
+
+  delete(id: number) {
+    console.log("to delete " + id);
+    this.contactService.delete(id).subscribe(() => {
+      this.contacts.forEach(e => {
+        if (e.idContact == id) {
+          const index = this.contacts.indexOf(e, 0);
+          this.contacts.splice(index, 1);
+        }
+      })
+    });
+  }
+
+  sortTableBy(name:string) {
+    console.log("sortTableBy " + name);
+    this.contacts.sort((n1, n2) => this.sortData(n1, n2, name));
+    this.isAsc = !this.isAsc;
+    if(this.isAsc) {
+      this.iconURL = "fas fa-chevron-up"
+    }else {
+
+      this.iconURL = "fas fa-chevron-down"
+    }
+  }
+
+  sortData(data1: Contact, data2: Contact, sortBy: string) {
+
+    let n1: any, n2: any;
+    switch (sortBy) {
+      case "name":
+        n1 = data1.name;
+        n2 = data2.name;
+        this.indicador.name = this.iconURL;
+        this.indicador.age = "";
+        this.indicador.phone = "";
+        break;
+      case "age":
+        n1 = data1.age;
+        n2 = data2.age;
+        this.indicador.age = this.iconURL;
+        this.indicador.name = "";
+        this.indicador.phone = "";
+        break;
+      case "phone":
+          n1 = data1.phoneNumber;
+          n2 = data2.phoneNumber;
+          this.indicador.phone = this.iconURL;
+          this.indicador.age = "";
+          this.indicador.name = "";
+          break;
+      default:
+        n1 = data1.idContact;
+        n2 = data2.idContact;
+    }
+
+    if (n1 === n2) {
+      return 0;
+    } else if (!this.isAsc) {
+      return (n1 < n2) ? -1 : 1;
+    } else {
+      return (n1 > n2) ? -1 : 1;
+    }
+  }
 }

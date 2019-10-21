@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { from } from 'rxjs';
 import { ContactsComponent } from './contacts/contacts.component';
+//import { AngularFontAwesomeModule } from '@fortawesome/fontawesome-free';
 
 // --------- Oauth ---------------------------------------------
 //import { httpInterceptorProviders } from './auth/auth-interceptor';
@@ -26,7 +27,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule//,
+    //AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
