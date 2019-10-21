@@ -35,7 +35,6 @@ export class ContactService {
         'Authorization': 'Bearer '+this.tokenStorageService.getToken()
       })
     };
-    console.log(id);
     return this.httpClient.delete(this.contactURL+id, httpOptions);
   }
 
@@ -46,9 +45,6 @@ export class ContactService {
         'Authorization': 'Bearer '+this.tokenStorageService.getToken()
       })
     };
-
-    console.log(contact.age, contact.idContact, contact.nickName, contact.phoneNumber);
-    console.log(JSON.stringify({contact}));
     return this.httpClient.put<Contact>(this.contactURL+id, {"idContact": contact.idContact,
     "name": contact.name,
     "age": contact.age,

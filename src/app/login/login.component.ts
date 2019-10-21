@@ -28,24 +28,29 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
-    this.login = new Login(this.form.username, this.form.password);
-    this.authService.login(this.login).subscribe(data => {
-      this.tokenStorageService.saveToken(data.token);
-      this.tokenStorageService.saveUsername(data.username);
-      this.tokenStorageService.saveAuthorities(data.authorities);
-
-      this.isLogged = true;
+    if (this.form.username == null || this.form.password == null) {
+      this.errorMessage = "You must fill in all fields";
+      this.isLoginFailed = true;
+    } else {
+      this.errorMessage = "";
       this.isLoginFailed = false;
-      this.roles = this.tokenStorageService.getAutorities();
-      this.reloadPage();
-    },
-      error => {
-        console.log(error);
-        this.errorMessage = error.error.errorMessage;
-        this.isLoginFailed = true;
-      }
-    );
+      this.login = new Login(this.form.username, this.form.password);
+      this.authService.login(this.login).subscribe(data => {
+        this.tokenStorageService.saveToken(data.token);
+        this.tokenStorageService.saveUsername(data.username);
+        this.tokenStorageService.saveAuthorities(data.authorities);
+
+        this.isLogged = true;
+        this.isLoginFailed = false;
+        this.roles = this.tokenStorageService.getAutorities();
+        this.reloadPage();
+      },
+        error => {
+          this.errorMessage = "Oh! an error has appeared, please check your information";
+          this.isLoginFailed = true;
+        }
+      );
+    }
   }
 
   reloadPage() {

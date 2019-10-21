@@ -1,6 +1,7 @@
 <div class="container-fluid">
 <h1>Login</h1>
 <form class="bg-light text-dark" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+<p class="error" *ngIf="isLoginFailed">{{errorMessage}}</p>
     <div class="form-group row">
       <label for="inputUserName" class="col-sm-2 col-form-label">User name</label>
       <div class="col-sm-10">

@@ -10,4 +10,10 @@ form {
   width: 40%;
   align-content: center;
 }
+.error {
+  color:red;
+}
+.success {
+  color: green;
+}
 

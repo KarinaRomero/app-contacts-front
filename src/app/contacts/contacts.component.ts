@@ -30,7 +30,7 @@ export class ContactsComponent implements OnInit {
     this.contactService.getContacts().subscribe(data => {
       this.contacts = data;
       this.sortTableBy("name");
-    }, error => { console.log(error.error.messsage) });
+    }, error => {  });
   }
 
   create() {
@@ -42,17 +42,17 @@ export class ContactsComponent implements OnInit {
     this.currentContact = this.contacts.find(function (element) {
       return element.idContact = id;
     });
-    console.log("to update " + this.currentContact.idContact);
+
   }
   onSubmit() {
     if (this.action == "Update") {
       this.contactService.update(this.currentContact.idContact, this.currentContact).subscribe(data => {
-        console.log("UPDATE: ", data);
+
       });
     }
     if (this.action == "Create") {
       this.contactService.create(this.currentContact).subscribe(data => {
-        console.log("CREATE: ", data);
+
         this.contacts.push(data);
       });
     }
@@ -62,7 +62,6 @@ export class ContactsComponent implements OnInit {
   }
 
   delete(id: number) {
-    console.log("to delete " + id);
     this.contactService.delete(id).subscribe(() => {
       this.contacts.forEach(e => {
         if (e.idContact == id) {
@@ -74,7 +73,6 @@ export class ContactsComponent implements OnInit {
   }
 
   sortTableBy(name:string) {
-    console.log("sortTableBy " + name);
     this.contacts.sort((n1, n2) => this.sortData(n1, n2, name));
     this.isAsc = !this.isAsc;
     if(this.isAsc) {

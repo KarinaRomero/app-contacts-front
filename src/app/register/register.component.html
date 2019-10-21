@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <h1>Register</h1>
   <form class="bg-light text-dark" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <p class="error" *ngIf="isRegisterFailed">{{errorMessage}}</p>
     <div class="form-group row">
       <label for="inputNickName" class="col-sm-2 col-form-label">Nick name</label>
       <div class="col-sm-10">
@@ -29,11 +30,13 @@
             <div class="form-group row">
               <label for="inputPasswordConfirm" class="col-sm-2 col-form-label">Password Confirm</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Password">
+                <input type="password" (keyup)="onKey($event)" class="form-control" id="inputPasswordConfirm" placeholder="Password">
             </div>
               </div>
+                  <p class="error" *ngIf="!isPasswordCorrect"><i class="fas fa-times-circle">{{messagePassword}}</i></p>
+                  <p class="success" *ngIf="isPasswordCorrect"><i class="fas fa-check-circle">{{messagePassword}}</i></p>
               <div class="buttons mx-auto">
-                  <button class="btn btn-dark mb-2">Login</button>
+                  <button class="btn btn-dark mb-2">Register</button>
                   <button type="submit" class="btn btn-ligth mb-2" (click)="cancelOperation()">Cancelar</button>
               </div>
   </form>
