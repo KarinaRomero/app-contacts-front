@@ -35,12 +35,15 @@ export class ContactsComponent implements OnInit {
 
   create() {
     this.action = "Create"
+    this.currentContact = new Contact("", 0, "", "");
   }
 
   update(id: number) {
+
+    console.log("Update "+id);
     this.action = "Update"
     this.currentContact = this.contacts.find(function (element) {
-      return element.idContact = id;
+      return element.idContact === id;
     });
 
   }
@@ -62,6 +65,8 @@ export class ContactsComponent implements OnInit {
   }
 
   delete(id: number) {
+
+    console.log("Delete "+id);
     this.contactService.delete(id).subscribe(() => {
       this.contacts.forEach(e => {
         if (e.idContact == id) {
